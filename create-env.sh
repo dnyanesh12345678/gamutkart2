@@ -11,4 +11,4 @@ do
     echo "tomcat-server$i container has been created!"
 	echo "=============================="
 done
-docker inspect --format {{.NetworkSettings.Networks.bridge.IPAddress}} `docker ps -q` > IPs.txt
+sudo docker inspect --format {{.NetworkSettings.Networks.bridge.IPAddress}} `docker ps -q` > IPs.txt
