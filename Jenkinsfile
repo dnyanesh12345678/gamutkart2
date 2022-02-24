@@ -32,8 +32,8 @@ stage("login to docker hub"){
 }
 stage("build"){
         steps{
-            sh "sudo docker build -t 9dnyanesh/gamutkart-image:latest ."
-            sh "sudo docker push 9dnyanesh/gamutkart-image:latest"
+            sh " docker build -t 9dnyanesh/gamutkart-image:latest ."
+            sh " docker push 9dnyanesh/gamutkart-image:latest"
         }
     }
 stage("create container"){
