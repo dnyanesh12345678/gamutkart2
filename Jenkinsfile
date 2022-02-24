@@ -26,7 +26,7 @@ environment {
 		}
 stage("login to docker hub"){
     steps{
-        sh "echo $dnyaneshwar_PSW | sudo docker login -u $dnyaneshwar_USR --password-stdin"
+        sh "echo $dnyaneshwar_PSW |  docker login -u $dnyaneshwar_USR --password-stdin"
         
     }
 }
