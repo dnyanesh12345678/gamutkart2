@@ -1,12 +1,8 @@
 pipeline {
     agent any
-
-//	tools {
-//		maven 'maven3.6'
-//	}
-//	environment {
-//		M2_INSTALL = "/usr/bin/mvn"
-//	}
+environment {
+  dnyaneshwar = credentials("india")
+}
 
     stages {
 		stage('Clone-Repo') {
@@ -28,13 +24,25 @@ pipeline {
 				junit 'target/**/*.xml'
 			}
 		}
-
+stage("login to docker hub"){
+    steps{
+        sh "echo $dnyaneshwar_PSW | sudo docker login -u $dnyaneshwar_USR --password-stdin"
+        
+    }
+}
+stage("build"){
+        steps{
+            sh "sudo docker build -t 9dnyanesh/gamutkart-image:latest ."
+            sh "sudo docker push 9dnyanesh/gamutkart-image:latest"
+        }
+    }
+stage("create container"){
+    steps{
+        sh "chmod 777 -R create-env.sh"
+        sh "./create-env.sh 5"
+    }
+}
 	
-		stage('Deployment') {
-			steps {
-				sh 'sshpass -p "gamut" scp target/gamutgurus.war gamut@172.17.0.4:/home/gamut/Distros/apache-tomcat-8.5.50/webapps'
-				sh 'sshpass -p "gamut" ssh gamut@172.17.0.4 "/home/gamut/Distros/apache-tomcat-8.5.50/bin/startup.sh"'
-	    	}
-		}
+		
     }
 }
