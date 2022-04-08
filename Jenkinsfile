@@ -1,9 +1,5 @@
 pipeline {
     agent any
-environment {
-  dnyaneshwar = credentials("india")
-}
-
     stages {
 		stage('Clone-Repo') {
 			steps {
@@ -24,25 +20,17 @@ environment {
 				junit 'target/**/*.xml'
 			}
 		}
-stage("login to docker hub"){
+stage("deploy to QA-server"){
     steps{
-        sh "echo $dnyaneshwar_PSW |  docker login -u $dnyaneshwar_USR --password-stdin"
+        sh "scp target/gamutgurus.war root@172.17.0.3:/root/apache-tomcat-9.0.62/webapps"
         
     }
 }
-stage("build"){
+stage("deploy to production sever"){
         steps{
-            sh " docker build -t 9dnyanesh/gamutkart-image:latest ."
-            sh " docker push 9dnyanesh/gamutkart-image:latest"
+              sh "scp target/gamutgurus.war root@172.17.0.2:/root/apache-tomcat-9.0.62/webapps"
         }
     }
-stage("create container"){
-    steps{
-        sh "chmod 777 -R create-env.sh"
-        sh "./create-env.sh 5"
-    }
-}
-	
 		
     }
 }
