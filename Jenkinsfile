@@ -1,36 +1,38 @@
-pipeline {
-    agent any
-    stages {
-		stage('Clone-Repo') {
-			steps {
-				checkout scm
-			}
-		}
-	
-		stage('Build') {
-			steps {
-				sh 'mvn install -Dmaven.test.skip=true'
-			}
-		}
-		
-		stage('Unit Tests') {
-			steps {
-				sh 'mvn compiler:testCompile'
-				sh 'mvn surefire:test'
-				junit 'target/**/*.xml'
-			}
-		}
-stage("deploy to QA-server"){
-    steps{
-        sh "scp target/gamutgurus.war root@172.17.0.3:/root/apache-tomcat-9.0.62/webapps"
-        
-    }
+pipeline{
+agent any
+environment {
+  DOCKERHUB_CREDENTIALS = "credentials('dockerhub')"
 }
-stage("deploy to production sever"){
-        steps{
-              sh "scp target/gamutgurus.war root@172.17.0.2:/root/apache-tomcat-9.0.62/webapps"
-        }
-    }
-		
-    }
+stages{
+stage("git-clone"){
+steps{
+checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dnyanesh12345678/gamutkart2.git']]])
+}
+}
+stage("compliation"){
+steps{
+sh "mvn install"
+}
+}
+stage("connect to dockerhub"){
+steps{
+sh "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u DOCKERHUB_CREDENTIALS_USR --password-stdin"
+}
+}
+stage("create image"){
+steps{
+sh "docker build -t 9dnyanesh/gamutkart-image ."
+}
+}
+stage("push image to dockerhub"){
+steps{
+sh "docker push 9dnyanesh/gamutkart-image"
+}
+}
+stage("create environment"){
+steps{
+sh "./create-env.sh 5"
+}
+}
+}
 }

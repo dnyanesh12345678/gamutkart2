@@ -6,5 +6,6 @@ ENV JAVA_HOME /usr
 ADD apache-tomcat-8.5.38.tar.gz /root
 COPY target/gamutgurus.war /root/apache-tomcat-8.5.38/webapps
 ENV PATH=$PATH:/root/apache-tomcat-8.5.38/bin
-ENTRYPOINT startup.sh && bash
+RUN apt-get update && apt-get install openssh-server -y
+ENTRYPOINT startup.sh && service ssh start && bash
 
