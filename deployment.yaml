@@ -19,7 +19,7 @@
       remote_src: yes
    - name: copy war file 
      copy:
-      src: /target/gamutgurus.war
+      src: /home/zx/.jenkins/workspace/deployment using ansible/target/gamutgurus.war
       dest: /root/apache-tomcat-9.0.62/webapps
    - name: start tomcat
      shell: nohup /root/apache-tomcat-9.0.62/bin/startup.sh
