@@ -4,7 +4,7 @@
   ignore_errors: yes
   tasks:
    - name: deploy war file in tomcat server
-     shell: apt-get update && apt-get install wget -y && cd /root/apache-tomcat-9.0.62/webapps && wget --user=admin --password='PASSWORD' http://172.17.0.2:8082/artifactory/gamutkart-1/gamutgurus.war
+     shell: apt-get update && apt-get install wget -y && cd /root/apache-tomcat-9.0.62/webapps && wget --user=admin --password='password' http://172.17.0.2:8082/artifactory/gamutkart-1/gamutgurus.war
 
 
      #   - name: deploy war file in tomcat server
