@@ -36,7 +36,7 @@ sh "mvn clean package"
     spec: '''{
           "files": [
             {
-              "pattern": "/target/gamutgurus.war",
+              "pattern": "/home/zx/.jenkins/workspace/gamutkart-ansible-jfrog automation/target/gamutgurus.war",
               "target": "gamutkart-project"
             }
          ]
