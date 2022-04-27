@@ -4,10 +4,14 @@
   ignore_errors: yes
   tasks:
    - name: deploy war file in tomcat server
-     get_url:
-      url: http://172.17.0.2:8082/artifactory/gamutkart-project/gamutgurus.war
-      dest: /root/apache-tomcat-9.0.62/webapps
-      username: admin
-      password: password
+     shell: apt-get update && apt-get install wget -y && cd /root/apache-tomcat-9.0.62/webapps && wget --user=admin --password='PASSWORD' http://172.17.0.2:8082/artifactory/gamutkart-project/gamutgurus.war
+
+
+     #   - name: deploy war file in tomcat server
+     #  get_url:
+     # url: http://172.17.0.2:8082/artifactory/gamutkart-project/gamutgurus.war
+     # dest: /root/apache-tomcat-9.0.62/webapps
+     # username: admin
+     # password: password
 
       
