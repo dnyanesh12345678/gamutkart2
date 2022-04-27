@@ -3,23 +3,11 @@
   remote_user: root
   ignore_errors: yes
   tasks:
-   - name: install java
-     apt:
-      name: openjdk-8-jdk 
-      state: present
-   - name: download tomcat
+   - name: deploy war file in tomcat server
      get_url:
-      url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz
-      dest: /root
-      mode: 777
-   - name: extract package
-     unarchive:
-      src: /root/apache-tomcat-9.0.62.tar.gz
-      dest: /root
-      remote_src: yes
-   - name: copy war file 
-     copy:
-      src: /home/zx/.jenkins/workspace/deployment using ansible/target/gamutgurus.war
+      url: http://172.17.0.2:8082/artifactory/jenkins/gamutgurus.war
       dest: /root/apache-tomcat-9.0.62/webapps
-   - name: start tomcat
-     shell: nohup /root/apache-tomcat-9.0.62/bin/startup.sh
+      username: admin
+      password: '{{ password }}'
+
+      
