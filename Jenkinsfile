@@ -39,7 +39,7 @@ sh "mvn clean package"
           "files": [
             {
               "pattern": "/home/zx/.jenkins/workspace/gamutkart-ansible-jfrog automation/target/gamutgurus.war",
-              "target": "gamutkart-project"
+              "target": "gamutkart-1"
             }
          ]
     }''',
