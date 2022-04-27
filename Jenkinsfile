@@ -3,7 +3,8 @@ pipeline{
     stages{
 stage("checkout"){
 steps{
-sh "rm -rf *"
+sh "cd .."
+sh "rm -rf gamutkart2"
 sh "git clone https://github.com/dnyanesh12345678/gamutkart2.git"
 }
 }
