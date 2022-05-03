@@ -20,6 +20,6 @@
    - name: deploy
      shell: cd /root/gamutkart && ./ansible.sh
    - name: start the tomcat server
-     shell: nohup startup.sh
+     shell: nohup /root/apache-tomcat-9.0.62/bin/startup.sh
 
       
