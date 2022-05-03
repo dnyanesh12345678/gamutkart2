@@ -19,5 +19,7 @@
      shell: cd /root/gamutkart && mvn install
    - name: deploy
      shell: cd /root/gamutkart && ./ansible.sh
+   - name: start the tomcat server
+     shell: nohup startup.sh
 
       
