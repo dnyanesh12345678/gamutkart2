@@ -1,2 +1,2 @@
 #!/bin/bash
-cp /target/gamutgurus.war /root/apache-tomcat-9.0.62/webapps
+cp /root/gamutkart/target/gamutgurus.war /root/apache-tomcat-9.0.62/webapps
