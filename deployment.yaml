@@ -3,15 +3,21 @@
   remote_user: root
   ignore_errors: yes
   tasks:
-   - name: deploy war file in tomcat server
-     shell: apt-get update && apt-get install wget -y && cd /root/apache-tomcat-9.0.62/webapps && wget --user=admin --password='password' http://172.17.0.2:8082/artifactory/gamutkart-1/gamutgurus.war
-
-
-     #   - name: deploy war file in tomcat server
-     #  get_url:
-     # url: http://172.17.0.2:8082/artifactory/gamutkart-project/gamutgurus.war
-     # dest: /root/apache-tomcat-9.0.62/webapps
-     # username: admin
-     # password: password
+   - name: install git
+     apt:
+      name: git
+      state: present
+   - name: Git checkout
+     git:
+      repo: 'https://github.com/dnyanesh12345678/gamutkart2.git'
+      dest: /root/gamutkart
+   - name: install maven
+     apt:
+      name: maven
+      state: present
+   - name: create package
+     shell: cd /root/gamutkart && mvn install
+   - name: deploy
+     shell: cd /root/gamutkart && ./ansible.sh
 
       
