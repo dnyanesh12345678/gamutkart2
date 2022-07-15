@@ -24,5 +24,11 @@ pipeline {
       }
     }
 
+    stage('deploy to tomcat server') {
+      steps {
+        sh 'rsync -avh ./target/gamutgurus.war root@172.17.0.2:/root/apache-tomcat-9.0.62/webapps'
+      }
+    }
+
   }
 }
