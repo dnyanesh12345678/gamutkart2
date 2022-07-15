@@ -18,5 +18,11 @@ pipeline {
       }
     }
 
+    stage('check project build or not') {
+      steps {
+        sh 'find . -name *.war'
+      }
+    }
+
   }
 }
