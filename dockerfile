@@ -8,4 +8,4 @@ COPY target/gamutgurus.war /opt/apache-tomcat-8.5.38/webapps
 ENV PATH=$PATH:/root/apache-tomcat-8.5.38/bin
 RUN apt-get update && apt-get install openssh-server -y
 ENTRYPOINT startup.sh && service ssh start && bash
-EXPORT 8080 8082
+EXPOSE 8080 8082
