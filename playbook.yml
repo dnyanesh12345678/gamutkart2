@@ -1,0 +1,11 @@
+- hosts: zx
+  become: yes
+  tasks:
+   ##- name: download file from jfrog
+   ##  get_url:
+    ##  url: http://172.17.0.2:8082/artifactory/gamutkart-production/gamutgurus.war
+     ## dest: /tmp/gamutkart-production
+     ## username: admin
+     ## password: "password"
+   - name: copy to aws ansible-server
+     shell: rsync -avh /tmp/gamutkart-production/gamutgurus.war ubuntu@44.201.89.143:/tmp/gamutkart_prod
