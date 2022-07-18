@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  tasks: 
+   - name: deploy app-container on production server
+     shell: docker run -it -d --name gamutkart-prod -h gamutkart -p 8082:8080  9dnyanesh/gamutkart_production
+     register: output
+   - name: print output
+     debug:
+      var: output

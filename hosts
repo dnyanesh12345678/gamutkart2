@@ -1,6 +1,6 @@
-[node1]
-172.17.0.2  ansible_user=root
-[node2]
-172.17.0.3  ansible_user=root
-[node3]
-172.17.0.4  ansible_user=root
+[prod-server]
+#172.31.83.29 ansible_user=ubuntu ansible_password=12345678
+172.31.90.94 ansible_user=ubuntu ansible_password=12345678
+172.31.89.201 ansible_user=ubuntu ansible_password=12345678
+172.31.85.153 ansible_user=ubuntu ansible_password=12345678
+
