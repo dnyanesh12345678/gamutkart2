@@ -1,10 +1,4 @@
-FROM ubuntu:16.04 
-MAINTAINER "9dnyanesh@gmail.com"
-RUN apt-get update
-RUN apt-get install -y openjdk-8-jdk
-ENV JAVA_HOME /usr
-ADD apache-tomcat-8.5.38.tar.gz /opt
-COPY target/gamutgurus.war /opt/apache-tomcat-8.5.38/webapps
-RUN apt-get update && apt-get install openssh-server -y
-CMD /opt/apache-tomcat-8.5.38/bin/startup.sh && service ssh start && bash
-EXPOSE 8080 8082
+FROM 9dnyanesh/docker-base-image:13
+COPY target/gamutgurus.war /opt/apache-tomcat-8.5.81/webapps
+CMD startup.sh
+EXPOSE 8082 8080

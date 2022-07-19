@@ -2,7 +2,7 @@
   become: yes
   tasks: 
    - name: deploy app-container on production server
-     shell: docker rm -f $(docker ps -a -q) && docker run -it -d --name gamutkart-prod -h gamutkart -p 8082:8080  9dnyanesh/gamutkart_production
+     shell: docker run -it --name gamutkart_production -h gamutkart_production -d -p 0.0.0.0:8082:8080 9dnyanesh/docker-base-image:14
      register: output
    - name: print output
      debug:
